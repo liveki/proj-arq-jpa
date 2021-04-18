@@ -1,7 +1,6 @@
 package com.grupo1.grupo1.aplicacao.servicos;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.grupo1.grupo1.aplicacao.dtos.EstatisticasDTO;
 import com.grupo1.grupo1.aplicacao.dtos.PerformanceDTO;
@@ -27,7 +26,7 @@ public class ServicoEstatistica {
   }
 
   public PerformanceDTO calculaAumentoPerformance(int distancia, int ano) {
-    List<Evento> eventos = eventoRep.todos().stream().filter(e -> e.getAno() == ano).collect(Collectors.toList());
+    List<Evento> eventos = eventoRep.findByAno(ano);
     int indiceMaiorDif = 0;
     double maiorDif = -1.0;
     for (int i = 0; i < eventos.size() - 1; i++) {

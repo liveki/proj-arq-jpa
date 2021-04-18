@@ -8,4 +8,8 @@ public interface IEventoRepository {
   List<Evento> todos();
 
   boolean cadastra(Evento evento);
+
+  List<Evento> findByDistancia(int distancia);
+
+  List<Evento> findByAno(int ano);
 }
