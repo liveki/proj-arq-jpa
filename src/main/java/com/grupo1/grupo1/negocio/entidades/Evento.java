@@ -1,9 +1,13 @@
 package com.grupo1.grupo1.negocio.entidades;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Column;
 
 @Entity
 public class Evento {
@@ -11,27 +15,22 @@ public class Evento {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String nome;
-  // Data do evento
-  private int dia;
-  private int mes;
-  private int ano;
+
+  @Embedded
+  private Data data;
+
+  @Embedded
+  private Hora hora;
+
   // Distancia percorrida
   private int distancia; // metros
-  // Tempo que o corredor levou para percorrer a distancia
-  private int horas;
-  private int minutos;
-  private int segundos;
 
-  public Evento(Long id, String nome, int dia, int mes, int ano, int distancia, int horas, int minutos, int segundos) {
+  public Evento(Long id, String nome, Data data, int distancia, Hora hora) {
     this.id = id;
     this.nome = nome;
-    this.dia = dia;
-    this.mes = mes;
-    this.ano = ano;
+    this.data = data;
     this.distancia = distancia;
-    this.horas = horas;
-    this.minutos = minutos;
-    this.segundos = segundos;
+    this.hora = hora;
   }
 
   protected Evento() {
@@ -45,37 +44,21 @@ public class Evento {
     return nome;
   }
 
-  public int getDia() {
-    return dia;
+  public Data getData() {
+    return data;
   }
 
-  public int getMes() {
-    return mes;
-  }
-
-  public int getAno() {
-    return ano;
+  public Hora getHora() {
+    return hora;
   }
 
   public int getDistancia() {
     return distancia;
   }
 
-  public int getHoras() {
-    return horas;
-  }
-
-  public int getMinutos() {
-    return minutos;
-  }
-
-  public int getSegundos() {
-    return segundos;
-  }
-
   @Override
   public String toString() {
-    return "Evento [ano=" + ano + ", dia=" + dia + ", distancia=" + distancia + ", horas=" + horas + ", id=" + id
-        + ", mes=" + mes + ", minutos=" + minutos + ", nome=" + nome + ", segundos=" + segundos + "]";
+    return "Evento [distancia=" + distancia + ", Hora=" + hora + ", id=" + id + ", Data=" + data + ", nome=" + nome
+        + "]";
   }
 }

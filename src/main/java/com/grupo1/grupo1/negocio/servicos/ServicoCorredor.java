@@ -25,5 +25,4 @@ public class ServicoCorredor {
     corredorRep.removeTodos();
     corredorRep.cadastra(corredor);
   }
-
 }

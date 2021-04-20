@@ -24,17 +24,8 @@ public class EventoH2BD_IMPL implements IEventoRepository {
 
   @Override
   public boolean cadastra(Evento evento) {
+    System.out.print(evento);
     eventoRepository.save(evento);
     return true;
-  }
-
-  @Override
-  public List<Evento> findByDistancia(int distancia) {
-    return eventoRepository.findByDistancia(distancia);
-  }
-
-  @Override
-  public List<Evento> findByAno(int ano) {
-    return eventoRepository.findByAno(ano);
   }
 }

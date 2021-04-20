@@ -6,8 +6,6 @@ import com.grupo1.grupo1.negocio.entidades.Evento;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface EventoH2BD_ITF extends CrudRepository<Evento, Long> {
-  List<Evento> findAll();
-
+public interface ServicoEstatistica_ITF extends CrudRepository<Evento, Long> {
   List<Evento> findByDataAno(int ano);
 }

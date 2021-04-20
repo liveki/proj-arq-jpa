@@ -5,15 +5,15 @@ import java.util.stream.Collectors;
 
 import com.grupo1.grupo1.aplicacao.dtos.EstatisticasDTO;
 import com.grupo1.grupo1.negocio.entidades.Evento;
-import com.grupo1.grupo1.negocio.repositorios.IEventoRepository;
+import com.grupo1.grupo1.negocio.repositorios.IEstatisticaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class EstatisticaDesconsidera implements ICalculoEstatistica {
-  private IEventoRepository eventoRep;
+  private IEstatisticaRepository eventoRep;
 
   @Autowired
-  public EstatisticaDesconsidera(IEventoRepository eventoRep) {
+  public EstatisticaDesconsidera(IEstatisticaRepository eventoRep) {
     this.eventoRep = eventoRep;
   }
 
@@ -21,7 +21,8 @@ public class EstatisticaDesconsidera implements ICalculoEstatistica {
     // Seleciona os eventos da distancia informada
     List<Evento> eventos = eventoRep.findByDistancia(distancia);
     // Obtém um stream com os valores ordenados
-    List<Double> valores = eventos.stream().map(e -> e.getHoras() * 60 * 60 + e.getMinutos() * 60.0 + e.getSegundos())
+    List<Double> valores = eventos.stream()
+        .map(e -> e.getHora().getHoras() * 60 * 60 + e.getHora().getMinutos() * 60.0 + e.getHora().getSegundos())
         .sorted().collect(Collectors.toList());
     // Se tem mais de 2 elementos emove o primeiro e o último
     if (eventos.size() >= 3) {
