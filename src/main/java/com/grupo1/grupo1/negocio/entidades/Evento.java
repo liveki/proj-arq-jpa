@@ -22,12 +22,15 @@ public class Evento {
   // Distancia percorrida
   private int distancia; // metros
 
-  public Evento(Long id, String nome, Data data, int distancia, Hora hora) {
+  private String corredor_id;
+
+  public Evento(Long id, String nome, Data data, int distancia, Hora hora, String corredor_id) {
     this.id = id;
     this.nome = nome;
     this.data = data;
     this.distancia = distancia;
     this.hora = hora;
+    this.corredor_id = corredor_id;
   }
 
   protected Evento() {
@@ -51,6 +54,14 @@ public class Evento {
 
   public int getDistancia() {
     return distancia;
+  }
+
+  public String getCorredor_id() {
+    return corredor_id;
+  }
+
+  public void setCorredor_id(String corredor_id) {
+    this.corredor_id = corredor_id;
   }
 
   @Override
